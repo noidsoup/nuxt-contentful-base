@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <h2>Latest posts</h2>
-        <ul>
-            <li v-if="posts" v-for="(post, index) in posts" :key="index">
-                <nuxt-link :to="post.fields.slug">{{ post.fields.title }}</nuxt-link>
+        <ul v-if="posts">
+            <li v-for="(post, index) in posts" :key="index">
+                <nuxt-link :to="'course-directory/' + post.fields.urlSlug">{{ post.fields.title }}</nuxt-link>
             </li>
         </ul>
     </div>
@@ -17,7 +17,7 @@ export default {
         }
     },
     async fetch({ store, params }) {
-        await store.dispatch('posts/getPosts', params.slug)
+        await store.dispatch('posts/getPosts', params.urlSlug)
     }
 }
 </script>

@@ -13,10 +13,17 @@ export const mutations = {
 export const actions = {
     async getPosts({commit}) {
         const response = await client.getEntries({
-            content_type: 'blogPost'
+            content_type: 'course'
         });
-        if (response.items.length > 0) {
-            commit('setPosts', response.items);
-        }
+        //console.log(response);
+        response.items.forEach((item) => {
+            delete item.fields.client;
+            delete item.fields.lessons;
+            //console.log();
+
+            if (response.items.length > 0) {
+                commit('setPosts', response.items);
+            }
+        });
     }
 }

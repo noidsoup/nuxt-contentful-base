@@ -59,11 +59,11 @@ module.exports = {
             });
 
             return client.getEntries({
-                content_type: 'blogPost'
+                content_type: 'course'
             }).then((response) => {
                 return response.items.map(entry => {
                     return {
-                        route: entry.fields.slug,
+                        route: 'course-directory/' + entry.fields.urlSlug,
                         payload: entry
                     };
                 });

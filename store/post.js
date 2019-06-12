@@ -16,12 +16,14 @@ export const mutations = {
 
 export const actions = {
     async getPostBySlug({commit}, slug) {
+        console.log('0----', slug);
         commit('setLoading', true);
+/*         console.log(slug);
         const response = await client.getEntries({
             content_type: 'blogPost',
             'fields.slug': slug
         });
         commit('setCurrentPost', response.items[0]);
-        commit('setLoading', false);
+        commit('setLoading', false); */
     }
 }
