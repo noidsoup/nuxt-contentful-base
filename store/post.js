@@ -15,15 +15,17 @@ export const mutations = {
 }
 
 export const actions = {
-    async getPostBySlug({commit}, slug) {
-        console.log('0----', slug);
-        commit('setLoading', true);
-/*         console.log(slug);
-        const response = await client.getEntries({
-            content_type: 'blogPost',
-            'fields.slug': slug
+    async getPostBySlug({commit, rootState}, slug) {
+
+        const courses = rootState.posts.posts;
+        const clientCourses = courses.filter((course) => {
+            return course.fields.client.fields.urlSlug === slug;
         });
-        commit('setCurrentPost', response.items[0]);
-        commit('setLoading', false); */
+
+        //console.log(clientCourses);
+
+        commit('setLoading', true);
+        commit('setCurrentPost', clientCourses);
+        commit('setLoading', false);
     }
 }

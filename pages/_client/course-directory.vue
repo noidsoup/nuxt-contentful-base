@@ -1,10 +1,12 @@
 <template>
     <div class="single-post">
         <div v-if="!isLoading" class="single-post__article">
-        	<h1 class="single-post__title">
-                {{ currentPost.fields.title }}
-            </h1>
-            <div class="single-post__content" v-html="$md.render(currentPost.fields.content)"></div>
+            <ul>
+                <li v-for="(post, index) in currentPost" :key="index">
+                    {{post.fields.title}}
+                </li>
+            </ul>
+           <!--  <div class="single-post__content" v-html="$md.render(currentPost.fields.content)"></div> -->
         </div>
         <p v-else class="single-post__loading">
             Loading
@@ -23,7 +25,8 @@ export default {
         }
     },
     async fetch({ store, params }) {
-        await store.dispatch('post/getPostBySlug', params.slug)
+        await store.dispatch('posts/getPosts', params.urlSlug)
+        await store.dispatch('post/getPostBySlug', params.client)
     }
 }
 </script>

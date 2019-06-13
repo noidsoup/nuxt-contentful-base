@@ -16,6 +16,9 @@ module.exports = {
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
         ]
     },
+    env: {
+        baseUrl: process.env.CLIENT_NAME || ''
+    },
     /*
     ** Customize the progress bar color
     */
@@ -51,7 +54,7 @@ module.exports = {
             }
         }
     },
-    generate: {
+/*     generate: {
         routes: () => {
             const client = contentful.createClient({
                 space:  process.env.CTF_SPACE_ID,
@@ -69,5 +72,5 @@ module.exports = {
                 });
             });
         }
-    }
+    } */
 }
